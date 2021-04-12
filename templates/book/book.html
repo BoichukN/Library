@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h5>{% for author in full.authors.all %} {{author.name}}  {{author.patronymic}} {{author.surname}} {% endfor %}</h5><br>
+
+
+{% if full %}
+    <h1>{{full.name}}</h1>
+            <div class ="alert alert-warning mt-2">
+                <p>{{full.description}}</p>
+                <p>Count: {{full.count}}</p>
+                <a href="{% url 'edit_book' full.id %}">Edit</a>
+                <a href="{% url 'delete_book' full.id %}">Delete</a>
+                <a href="{% url 'new_order' %}">Order</a>
+            </div>
+{% else %}
+    <p>Oops, we don't have this book. Want to <a href="{% url 'new_book' %}">add a new book</a>?</p>
+{% endif %}
+
+{% endblock %}

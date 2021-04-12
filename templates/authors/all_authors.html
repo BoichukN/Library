@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Available authors</h1> <br>
+
+
+
+{% if authors %}
+    <a  href="{% url 'new_author' %}">Add new author</a><br>    
+        {% for el in authors %}
+        	<div class ="alert alert-warning mt-2">
+                <p>{{el.name}} {{el.patronymic}}  {{el.surname}} </p>
+                <a href="{% url 'edit_author' el.id %}">Edit</a>
+                <a href="{% url 'get_author' el.id %}">Detail</a>
+                <a href="{% url 'delete_author' el.id %}">Delete</a>
+            </div>
+        {% endfor %}
+{% else %}
+    <p>Sorry, no authors here so far. Would you like to <a href="{% url 'new_author' %}">add a new one</a>?</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Available users</h1>
+
+
+{% if users %}
+    <a href="{% url 'new_user' %}">New User</a>
+        {% for el in users %}
+            <div class ="alert alert-warning mt-2">
+                <p>{{el.first_name}}  {{el.middle_name}}  {{el.last_name}}</p>
+                <a href="{% url 'edit_user' el.id %}">Edit</a>
+                <a href="{% url 'get_by_id' el.id %}">Detail</a>
+                <a href="{% url 'user_delete' el.id %}">Delete</a>
+            </div>
+        {% endfor %}
+{% else %}
+    <p>Sorry, no users found. Would you like to <a href="{% url 'new_user' %}">register</a>?</p>
+{% endif %}
+
+{% endblock %}

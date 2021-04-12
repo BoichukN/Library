@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to our Library project!</h1>
+<p>Please check our <a href="{% url 'get_all_books' %}">variety of books</a></p>
+<p>Please check our <a href="{% url 'get_all_authors' %}">variety of authors</a></p>
+{% endblock content %}

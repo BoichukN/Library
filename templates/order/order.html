@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{full.user.first_name}}  {{full.user.middle_name}}  {{full.user.last_name}}</h2>
+	<h4>Author: {% for author in full.book.authors.all %} {{author.name}} {{author.surname}} {% endfor %}</h4>
+	<h5>{{full.book.name}}</h5>
+	<p>Take={{full.created_at}}</p>
+	<p>Return={{full.end_at}}</p>
+
+<p>
+	<a href="{% url 'get_all_orders' %}">Back</a>
+</p>
+
+{% endblock content %}

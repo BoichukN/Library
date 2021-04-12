@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Available orders</h1>
+<a href="{% url 'new_order' %}">New order</a>
+
+{% if orders %}
+        {% for el in orders %}
+            <div class ="alert alert-warning mt-2">
+                <p>{{el.user.first_name}} {{el.user.last_name}}</p>
+                <p>{{el.book.name}} {% for author in el.book.authors.all %} {{author.name}} {{author.surname}} {% endfor %}</p>
+                <p>Take: {{el.created_at}}</p>
+                <p>Back: {{el.end_at}}</p>
+                <a href="{% url 'edit_order' el.id %}">Edit</a>
+                <a href="{% url 'get_order' el.id %}">Detail</a>
+                <a href="{% url 'delete_order' el.id %}">Delete</a>
+            </div>
+        {% endfor %}
+{% else %}
+    <p>Oops, no orders so far. Would uou like to <a href="{% url 'new_order' %}">place new order</a>?</p>
+{% endif %}
+
+{% endblock %}
